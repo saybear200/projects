@@ -18,14 +18,6 @@ long ft_calc(int s1, char s2, int s3)
     }
     if(s2 == '-')
         i = s1 - s3;
-    if(s2 == '!')
-    {
-        while(s1 > 0)
-        {
-            i = i * s1;
-            s1--;
-        }
-    }
     if(s2 == '^')
     {
         while(s3 > 0)
@@ -34,7 +26,23 @@ long ft_calc(int s1, char s2, int s3)
             s3--;   
         }
     }
-    if(s2 == 'v')
+    return(i);
+}
+
+long ft_calc_more(int s1, char s2)
+{
+   long i;
+
+   i = 1;   
+    if(s2 == '!')
+    {
+        while(s1 > 0)
+        {
+            i = i * s1;
+            s1--;
+        }
+    }
+        if(s2 == 'v')
     {
         while(i < s1 / i)
         {
@@ -48,6 +56,10 @@ long ft_calc(int s1, char s2, int s3)
 int main(int argc, char **argv)
 {
     (void) argc;
-    printf("%ld\n", ft_calc(atoi(argv[1]), argv[2][0], atoi(argv[3])));
-    return(0);
+    if(argv[2][0] == 'x' || argv[2][0] == '+' || argv[2][0] == '-' || argv[2][0] == '^')
+        printf("%ld\n", ft_calc(atoi(argv[1]), argv[2][0], atoi(argv[3])));
+    if(argv[2][0] == 'v' || argv[2][0] == '!')
+        printf("%ld\n", ft_calc_more(atoi(argv[1]), argv[2][0]));
+    if(!(argv[2][0] == 'x' || argv[2][0] == '+' || argv[2][0] == '-' || argv[2][0] == '^' || argv[2][0] == 'v' || argv[2][0] == '!'))
+        printf("caracter inválido\n");
 }
